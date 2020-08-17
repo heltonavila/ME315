@@ -7,12 +7,12 @@ output: html_document
 
 ##Q1
 ```{r eval=FALSE}
-install.packages( "tidyverse", repos="http://cran.us.r-project.org") #Instala o pacote tidyverse
+install.packages("tidyverse", repos="http://cran.us.r-project.org") #Instala o pacote tidyverse
 ```
 
 ##Q2
 ```{r}
-library( "tidyverse") #Carrega o pacote tidyverse
+library("tidyverse") #Carrega o pacote tidyverse
 ```
 
 ##Q3: Apresentar os bancos de dados
@@ -36,14 +36,14 @@ table4b #Exibe a tibble chamada table4b
   A table4b não está no formato tidy, colunas representam os anos, uma variável, e para cada coluna ano tem-se a contagem da população. Para deixar a tabela no formato tidy seria necessário transformar os anos numa coluna *year* e os valores atualmente nessas colunas seriam transferidos para uma coluna *population*.
 
 ##Q5
-```{r }
+```{r}
 #Cria uma nova coluna em table1 com a taxa de casos para 10000 pessoas.
 table1 %>%
   mutate( rate=10000*(cases/population))
 ```
 
 ##Q6
-```{r }
+```{r}
 #Faz a soma de do número de casos de tuberculose na tabela para cada ano.
 table1 %>%
   group_by( year) %>%
@@ -51,7 +51,7 @@ table1 %>%
 ```
 
 ##Q7
-```{r }
+```{r}
 #Gráfico de linhas com a mudança no número de casos por país
 table1 %>%
   ggplot( aes( x=year, y=cases, color=country)) +
@@ -59,7 +59,7 @@ table1 %>%
 ```
 
 ##Q8
-```{r }
+```{r}
 #Calcula a taxa para a tabela table2 e armazena o resultado na tabela table2rate
 table2rate <- table2 %>%
   group_by( country, year) %>%
@@ -72,7 +72,7 @@ table4rate <- (10000*(table4a[,-1]/table4b[,-1])) %>%
 ```
 
 ##Q9
-```{r }
+```{r}
 #Gráfico de linhas com a mudança no número de casos por país
 table2 %>%
   filter( type=="cases") %>%
@@ -81,33 +81,33 @@ table2 %>%
 ```
 
 ##Q10
-```{r }
+```{r}
 #Transforma a table4a em formato tidy
 tidy4a = table4a %>%
   gather( key='year', value='cases', c('1999', '2000'), convert=TRUE)
 ```
 
 ##Q11
-```{r }
+```{r}
 #Transforma a table4b em formato tidy
 tidy4b = table4b %>%
   gather( key='year', value='population', c('1999', '2000'), convert=TRUE)
 ```
 
 ##Q12
-```{r }
+```{r}
 #União dos objetos tidy4a e tidy4b. O comando abaixo recebe dois argumentos x e y correspondentes a dois objetos de um mesmo conjunto de dados e copia os valores das variáveis distintas de y para o primeiro (x). Esse alinhamento das observações é feito pelo argumento by, no caso o sistema entende x=tidy4 e y=tidy4b vai reconhecer e usar as variáveis country e year para tal união.
 left_join(tidy4a, tidy4b)
 ```
 
 ##Q13
-```{r }
+```{r}
 #Transforma a table2 em formato tidy
 spread(table2, key = type, value = count)
 ```
 
 ##Q14
-```{r }
+```{r}
 #Transforma a table3 em formato tidy
 table3 %>% 
   separate(col = 'rate', into = c('cases', 'population'), convert = TRUE)
@@ -116,7 +116,7 @@ table3 %>%
 #Importação de Dados
 
 ##Q15
-```{r }
+```{r}
 #A variável path armazena o caminho completo até os arquivos de banco de dados
 path = 'C:/Users/ra137408/Downloads/flight-delays'
 
@@ -151,7 +151,7 @@ atrasos <- flights %>%
 ```
 
 ##Q18
-```{r }
+```{r}
 #Modifica a tabela de atrasos para possuir nome completo e cidade dos aeroportos.
 atrasos <- atrasos %>% 
   separate(col='ORIGIN_DESTINATION', 
