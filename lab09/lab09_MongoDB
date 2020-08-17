@@ -46,7 +46,7 @@ library(tibble)
 library(mongolite)
 
 colecao <- "diamonds_137408"
-myurl <- "mongodb://dbadmin:adeamorbdebochecha0@ds147213.mlab.com:47213/mdb_ramom"
+myurl <- "mongodb://dbadmin:adeamorbdebochecha0@ds147213.mlab.com:47213/mdb_helton"
 con <- mongo(colecao,
              url = myurl)
 
